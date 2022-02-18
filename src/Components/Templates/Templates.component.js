@@ -10,8 +10,11 @@ const Templates = () => {
   const {
     currentTemplates = [],
     filteredData = [],
+    isPending,
     ...rest
   } = useSelector((state) => state.dataReducer);
+
+  console.log({ isPending });
 
   const data = filteredData.length > 0 ? filteredData : currentTemplates;
 
@@ -20,12 +23,12 @@ const Templates = () => {
   }, []);
   return (
     <div className="wrapper">
-      {data.length > 0 ? (
+      {isPending ? (
+        <Loading />
+      ) : (
         data.map((template) => (
           <Template template={template} key={template.name} />
         ))
-      ) : (
-        <Loading />
       )}
     </div>
   );

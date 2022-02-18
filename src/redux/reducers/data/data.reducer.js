@@ -20,10 +20,6 @@ const initialState = {
 
 const dataReducer = (state = initialState, action) => {
   const { templatesPerPage, currentPage, templates, data, ...rest } = state;
-  console.log({
-    templates,
-    data,
-  });
 
   const end = templatesPerPage * currentPage;
   const start = end - templatesPerPage;
@@ -77,6 +73,7 @@ const dataReducer = (state = initialState, action) => {
         currentTemplates,
         filteredData: [],
         currentPage: 1,
+        isPending: false,
       };
 
     default:
