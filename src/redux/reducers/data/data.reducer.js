@@ -14,7 +14,7 @@ const initialState = {
   templates: [],
   filteredData: [],
   isPending: false,
-  templatesPerPage: 10,
+  templatesPerPage: 20,
   currentPage: 1,
 };
 
