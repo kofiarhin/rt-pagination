@@ -35,11 +35,12 @@ const dataReducer = (state = initialState, action) => {
         ...state,
         currentTemplates: action.payload.slice(start, end),
         templates: action.payload,
+        currentPage: 1,
       };
     case SET_FILTERED_DATA:
       return { ...state, filteredData: action.payload };
     case SET_CURRENT_TEMPLATES:
-      return { ...state, currentTemplates: action.payload };
+      return { ...state, currentTemplates: action.payload, currentPage: 1 };
     case PREVIOUS_PAGE:
       if (state.currentPage > 1) {
         const newEnd = (currentPage - 1) * templatesPerPage;
@@ -59,8 +60,6 @@ const dataReducer = (state = initialState, action) => {
       const newStart = newEnd - templatesPerPage;
       const newCurrentTemplates = state.templates.slice(newStart, newEnd);
 
-      console.log(pages);
-      return;
       return {
         ...state,
         currentPage: state.currentPage + 1,
@@ -77,6 +76,7 @@ const dataReducer = (state = initialState, action) => {
         templates: action.payload,
         currentTemplates,
         filteredData: [],
+        currentPage: 1,
       };
 
     default:
